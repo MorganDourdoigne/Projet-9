@@ -108,23 +108,33 @@ nav a {
 	padding-inline: 10px;
 }
 
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.gallery .item-column img {
+     object-fit: cover;
+}
+
 
 .nav{
 	gap: 30px;
 }
 
 .item-column {
-	position: relative;
-	margin-bottom: 0 !important;
-	padding: 0;
+    position: relative;
+    width: 240px;
+    height: 240px;
 }
+
 .item-column::after{
 	content: "";
 	display: block;
 	padding-bottom: 100%;
 }
 .gallery-item {
-	position: absolute;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;

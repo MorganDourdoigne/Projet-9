@@ -52,11 +52,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         imgElement.src = image.src;
         imgElement.dataset.galleryTag = image.tag;
         imgElement.alt = image.alt;
+    
         const itemColumn = document.createElement('div');
         itemColumn.classList.add('item-column');
         itemColumn.appendChild(imgElement);
+    
         gallery.appendChild(itemColumn);
     });
+    
 
     gallery.prepend(tagContainer);
     gallery.style.display = 'block'; 
