@@ -21,14 +21,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const tags = ['Tous', ...Array.from(new Set(galleryImages.map(image => image.tag)))];
     // Pour chaque tag, création d'un bouton qui filtre les images lorsqu'il sera cliqué
-    tags.forEach(tag => {
+
+
+        tags.forEach(tag => {
         const tagElement = document.createElement('button');
         tagElement.classList.add('nav-link');
         tagElement.innerText = tag;
-        tagElement.addEventListener('click', () => filterByTag(tag));
-        tagContainer.appendChild(tagElement);
-    });
+        tagElement.addEventListener('click', (event) => {
+            filterByTag(tag);
 
+            // Réinitialisez la couleur de tous les boutons
+            const allButtons = document.querySelectorAll('.nav-link');
+            allButtons.forEach(button => {
+                button.style.backgroundColor = '';
+                button.style.color = '';
+            });
+
+            // Changez la couleur du bouton cliqué
+            event.target.style.backgroundColor = '#BEB45A';
+            event.target.style.color = 'white';
+        });
+        tagContainer.appendChild(tagElement);
+        if (tag === 'Tous') {
+            tagElement.click();
+        }
+    });
     galleryImages.forEach(image => {
         const imgElement = document.createElement('img');
         imgElement.classList.add('gallery-item', 'img-fluid');
@@ -48,6 +65,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // fonction appelée lorsque l'on clique sur un bouton 
     function filterByTag(tag) {
         const galleryItems = gallery.querySelectorAll('.gallery-item');
+
+    // Pour chaque élément d'image, si son tag correspond au tag du bouton qui estvcliqué, "block" Sinon "none"
         galleryItems.forEach(item => {
             if (tag === 'Tous' || item.dataset.galleryTag === tag) {
                 item.parentElement.style.display = 'block';
