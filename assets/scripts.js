@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Crééation d'un tableau d'objets avec les données dedans
+    // Création d'un tableau d'objets avec les données dedans
     const galleryImages = [
         { src: './assets/images/Image-webp/aaron-paul.webp', tag: 'Concert', alt: 'Photo du plafond iluminé dans une salle de concert Aaron Paul' },
         { src: './assets/images/Image-webp/ali-morshedlou.webp', tag: 'Entreprises', alt: 'Portrait de profil d\'Ali Morshedlou' },
