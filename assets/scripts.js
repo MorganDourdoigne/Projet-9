@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Création d'un tableau d'objets avec les données dedans
     const galleryImages = [
         { src: './assets/images/Image-webp/aaron-paul.webp', tag: 'Concert', alt: 'Photo du plafond iluminé dans une salle de concert Aaron Paul' },
         { src: './assets/images/Image-webp/ali-morshedlou.webp', tag: 'Entreprises', alt: 'Portrait de profil d\'Ali Morshedlou' },
@@ -11,33 +10,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
         { src: './assets/images/Image-webp/austin-neill.webp', tag: 'Concert', alt: 'Austin Neill parlant dans le microphone sur scène lors d\'un concert' },
         { src: './assets/images/Image-webp/mateus-campos.webp', tag: 'Entreprises', alt: 'Mateus Campos Felipe souriant dans un bureau d\'entreprise' }
     ];
-    
-// Sélection de l'emplacement dans le HTML
-    const gallery = document.querySelector('.gallery');
 
-    // Création div pour les boutons filtres
+    const galleryContainer = document.querySelector('.container');
+    const gallery = document.querySelector('.gallerie_img');
+    gallery.classList.add('gallery');
     const tagContainer = document.createElement('div');
     tagContainer.classList.add('nav');
 
     const tags = ['Tous', ...Array.from(new Set(galleryImages.map(image => image.tag)))];
-    // Pour chaque tag, création d'un bouton qui filtre les images lorsqu'il sera cliqué
 
-
-        tags.forEach(tag => {
+    tags.forEach(tag => {
         const tagElement = document.createElement('button');
         tagElement.classList.add('nav-link');
         tagElement.innerText = tag;
         tagElement.addEventListener('click', (event) => {
             filterByTag(tag);
 
-            // Réinitialisez la couleur de tous les boutons
             const allButtons = document.querySelectorAll('.nav-link');
             allButtons.forEach(button => {
                 button.style.backgroundColor = '';
                 button.style.color = '';
             });
 
-            // Changez la couleur du bouton cliqué
             event.target.style.backgroundColor = '#BEB45A';
             event.target.style.color = 'white';
         });
@@ -46,35 +40,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
             tagElement.click();
         }
     });
+
     galleryImages.forEach(image => {
         const imgElement = document.createElement('img');
         imgElement.classList.add('gallery-item', 'img-fluid');
         imgElement.src = image.src;
         imgElement.dataset.galleryTag = image.tag;
         imgElement.alt = image.alt;
-    
-        const itemColumn = document.createElement('div');
-        itemColumn.classList.add('item-column');
-        itemColumn.appendChild(imgElement);
-    
-        gallery.appendChild(itemColumn);
+
+        gallery.appendChild(imgElement);
     });
-    
 
-    gallery.prepend(tagContainer);
-    gallery.style.display = 'block'; 
+    galleryContainer.appendChild(tagContainer);
+    galleryContainer.appendChild(gallery);
 
-
-    // fonction appelée lorsque l'on clique sur un bouton 
     function filterByTag(tag) {
         const galleryItems = gallery.querySelectorAll('.gallery-item');
 
-    // Pour chaque élément d'image, si son tag correspond au tag du bouton qui estvcliqué, "block" Sinon "none"
         galleryItems.forEach(item => {
             if (tag === 'Tous' || item.dataset.galleryTag === tag) {
-                item.parentElement.style.display = 'block';
+                item.style.display = 'block';
             } else {
-                item.parentElement.style.display = 'none';
+                item.style.display = 'none';
             }
         });
     }

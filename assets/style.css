@@ -110,9 +110,11 @@ nav a {
 
 .gallery {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
+
 
 .gallery .item-column img {
      object-fit: cover;
@@ -121,25 +123,18 @@ nav a {
 
 .nav{
 	gap: 30px;
+	margin-bottom: 30px;
+	justify-content: center
+	
 }
 
-.item-column {
-    position: relative;
-    width: 240px;
-    height: 240px;
-}
-
-.item-column::after{
-	content: "";
-	display: block;
-	padding-bottom: 100%;
-}
 .gallery-item {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	padding: .5em;
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    padding: .5em;
 }
+
 .mg-prev, .mg-next {
 	width: 30px;
 	height: 30px;
