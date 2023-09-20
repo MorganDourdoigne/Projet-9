@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
 
     galleryItems.forEach((item, index) => {
         item.addEventListener('click', () => {
@@ -85,11 +85,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             prevButton.textContent = '<';
             prevButton.addEventListener('click', (e) => {
                 e.stopPropagation();
-                index--;
-                if (index < 0) {
-                    index = galleryItems.length - 1;
+                let prevIndex = index - 1;
+                if (prevIndex < 0) {
+                    prevIndex = galleryItems.length - 1;
                 }
-                img.src = galleryItems[index].src;
+                while (galleryItems[prevIndex].style.display === 'none') {
+                    prevIndex--;
+                    if (prevIndex < 0) {
+                        prevIndex = galleryItems.length - 1;
+                    }
+                }
+                img.src = galleryItems[prevIndex].src;
+                index = prevIndex;
             });
             modal.appendChild(prevButton);
 
@@ -98,11 +105,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             nextButton.textContent = '>';
             nextButton.addEventListener('click', (e) => {
                 e.stopPropagation();
-                index++;
-                if (index >= galleryItems.length) {
-                    index = 0;
+                let nextIndex = index + 1;
+                if (nextIndex >= galleryItems.length) {
+                    nextIndex = 0;
                 }
-                img.src = galleryItems[index].src;
+                while (galleryItems[nextIndex].style.display === 'none') {
+                    nextIndex++;
+                    if (nextIndex >= galleryItems.length) {
+                        nextIndex = 0;
+                    }
+                }
+                img.src = galleryItems[nextIndex].src;
+                index = nextIndex;
             });
             modal.appendChild(nextButton);
 
