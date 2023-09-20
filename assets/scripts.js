@@ -17,9 +17,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const tagContainer = document.createElement('div');
     tagContainer.classList.add('nav');
 
+    // Création d'un tableau de tags map à partir des images
     const tags = ['Tous', ...Array.from(new Set(galleryImages.map(image => image.tag)))];
 
+     // Pour chaque tag, création élément bouton
     tags.forEach(tag => {
+
+    // Ajout d'un add event pour filtrer les images par tag lorsqu'on clique sur le bouton
         const tagElement = document.createElement('button');
         tagElement.classList.add('nav-link');
         tagElement.innerText = tag;
@@ -28,10 +32,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             const allButtons = document.querySelectorAll('.nav-link');
             allButtons.forEach(button => {
+    // Réinitialisation du style de tous les boutons
                 button.style.backgroundColor = '';
                 button.style.color = '';
             });
 
+    // style du bouton cliqué
             event.target.style.backgroundColor = '#BEB45A';
             event.target.style.color = 'white';
         });
@@ -41,6 +47,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
+    // Pour chaque image de la galerie, création d'un élément img et on l'ajoute à la galerie
     galleryImages.forEach(image => {
         const imgElement = document.createElement('img');
         imgElement.classList.add('gallery-item', 'img-fluid');
@@ -54,6 +61,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     galleryContainer.appendChild(tagContainer);
     galleryContainer.appendChild(gallery);
 
+    // Fonction pour filtrer les images par tag
     function filterByTag(tag) {
         const galleryItems = gallery.querySelectorAll('.gallery-item');
 
@@ -73,13 +81,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     galleryItems.forEach((item, index) => {
         item.addEventListener('click', () => {
+
+    // Création de la modale
             const modal = document.createElement('div');
             modal.classList.add('modal');
 
+    // Création de l'image de la modale
             const img = document.createElement('img');
             img.src = item.src;
             modal.appendChild(img);
 
+    //bouton précédent
             const prevButton = document.createElement('button');
             prevButton.classList.add('prev');
             prevButton.textContent = '<';
@@ -100,6 +112,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
             modal.appendChild(prevButton);
 
+    //bouton suivant
             const nextButton = document.createElement('button');
             nextButton.classList.add('next');
             nextButton.textContent = '>';
@@ -120,6 +133,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
             modal.appendChild(nextButton);
 
+    //écouteur d'événements pour fermer la modale lorsqu'on clique dessus
             modal.addEventListener('click', () => {
                 document.body.removeChild(modal);
             });

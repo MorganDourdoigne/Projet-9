@@ -253,22 +253,6 @@ input[type="submit"] {
 	padding: .5em 1em
 }
 
-@media all and (max-width: 1180px) {
-	.picture {
-		flex : 2;
-	}
-	#about, #contact .container {
-		align-items: center;
-	}
-	.about-me__title {
-		margin-top: 0;
-		margin-bottom: 1em;
-	}
-	#about-me h6, #about-me p {
-		width: 100%;
-	}
-}
-
 /* Css pour la modal */
 .modal {
     position: fixed;
@@ -309,12 +293,25 @@ input[type="submit"] {
 
 
 
+@media all and (max-width: 1180px) {
+	.picture {
+		flex : 2;
+	}
+	#about, #contact .container {
+		align-items: center;
+	}
+	.about-me__title {
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+	#about-me h6, #about-me p {
+		width: 100%;
+	}
+}
 
 
 
-
-
-
+/* Media queries */
 @media all and (max-width: 1000px) {
 	#about{
 		flex-direction: column;
