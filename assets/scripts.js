@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // style du bouton cliqué
             event.target.style.backgroundColor = '#BEB45A';
-            event.target.style.color = 'white';
+            event.target.style.color = 'black';
         });
         tagContainer.appendChild(tagElement);
         if (tag === 'Tous') {
