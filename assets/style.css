@@ -108,6 +108,10 @@ nav a {
 	padding-inline: 10px;
 }
 
+.nav-link:hover {
+	color: black; 
+}
+
 .gallery {
     display: flex;
     flex-direction: row;
